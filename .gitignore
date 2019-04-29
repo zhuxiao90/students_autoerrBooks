@@ -1,0 +1,18 @@
+*.test
+
+
+# Log files
+*.log
+
+
+# Project folders
+.idea/
+
+# vendor
+
+
+# swagger docs
+docs/
+# temp
+tmp
+

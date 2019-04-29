@@ -1,0 +1,12 @@
+syntax = "proto3";
+package goGrpctest;
+service HelloService{
+//    创建借口
+rpc SayHello(HelloRequest)returns(HelloResponse){}
+}
+message HelloRequest{
+    string name = 1;
+}
+message HelloResponse{
+    string message = 1;
+}
