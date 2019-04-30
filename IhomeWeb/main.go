@@ -1,33 +1,40 @@
 package main
 
 import (
-        "github.com/micro/go-log"
+	"github.com/julienschmidt/httprouter"
+	"github.com/micro/go-log"
+	"github.com/micro/go-web"
 	"net/http"
-
-        "github.com/micro/go-web"
-        "study/students_autoerrBooks/IhomeWeb/handler"
+	"study/students_autoerrBooks/IhomeWeb/handler"
 )
 
 func main() {
 	// create new web service
-        service := web.NewService(
-                web.Name("go.micro.web.IhomeWeb"),
-                web.Version("latest"),
-        )
+	// 创建web服务
+	service := web.NewService(
+		web.Name("go.micro.web.IhomeWeb"),
+		web.Version("latest"),
+		web.Address(":8999"),
+	)
 
 	// initialise service
-        if err := service.Init(); err != nil {
-                log.Fatal(err)
-        }
-
+	// 初始化服务
+	if err := service.Init(); err != nil {
+		log.Fatal(err)
+	}
+	rou := httprouter.New()
+	//  静态映射页面
+	rou.NotFound = http.FileServer(http.Dir("html"))
 	// register html handler
-	service.Handle("/", http.FileServer(http.Dir("html")))
+	// 注册服务
+	service.Handle("/", rou)
 
 	// register call handler
 	service.HandleFunc("/example/call", handler.ExampleCall)
 
 	// run service
-        if err := service.Run(); err != nil {
-                log.Fatal(err)
-        }
+	// 运行服务
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
