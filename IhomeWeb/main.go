@@ -6,6 +6,7 @@ import (
 	"github.com/micro/go-web"
 	"net/http"
 	"study/students_autoerrBooks/IhomeWeb/handler"
+	_ "study/students_autoerrBooks/IhomeWeb/models"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	service := web.NewService(
 		web.Name("go.micro.web.IhomeWeb"),
 		web.Version("latest"),
-		web.Address(":8999"),
+		web.Address(":8080"),
 	)
 
 	// initialise service
