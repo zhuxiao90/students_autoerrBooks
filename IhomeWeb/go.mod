@@ -8,8 +8,9 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/julienschmidt/httprouter v1.2.0
 	github.com/mattn/go-colorable v0.1.1 // indirect
-	github.com/micro/examples v0.1.0
+	github.com/micro/examples v0.1.0 // indirect
+	github.com/micro/go-grpc v0.9.0
 	github.com/micro/go-log v0.1.0
-	github.com/micro/go-micro v1.1.0
+	github.com/micro/go-micro v1.1.0 // indirect
 	github.com/micro/go-web v1.0.0
 )

@@ -26,13 +26,15 @@ func main() {
 	rou := httprouter.New()
 	//  静态映射页面
 	rou.NotFound = http.FileServer(http.Dir("html"))
+	rou.GET("/api/v1.0/areas",handler.GetArea)
+	//先写出来的来的来嗯个服务
+	//获取session
+	rou.GET("/api/v1.0/session",handler.GetSession)
+	//获取 index
+	rou.GET("api/v1.0/house/index",handler.GetIndex)
 	// register html handler
 	// 注册服务
 	service.Handle("/", rou)
-
-	// register call handler
-	service.HandleFunc("/example/call", handler.ExampleCall)
-
 	// run service
 	// 运行服务
 	if err := service.Run(); err != nil {
